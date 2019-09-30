@@ -14,14 +14,14 @@ scrollSpeed = 3
 local backgroundImage = display.newImageRect("Images/space-2.png", 2048, 1536)
 
 -- character image with widdth and height
-local spaceship = display.newImageRect("Images/spaceship.png", 200,200)
+local spaceship = display.newImageRect("Images/spaceship.png", 650,550)
 
 -- set the image to be transparent
-spaceship.alpha = 0
+spaceship.alpha = 1
 
 -- set the inital x and y position of spaceship
-spaceship.x = 50
-spaceship.y = 40
+spaceship.x = 400
+spaceship.y = 400
 
 -- Function: MoveShip
 -- Input: this function accepts an event listener
@@ -31,21 +31,23 @@ local function MoveShip(event)
 	-- add the scroll speed to the x-value of the ship
 	spaceship.x = spaceship.x + scrollSpeed
 	-- change the transparency of the ship every time it moves so that it fades out
-	spaceship.alpha = spaceship.alpha + 0.01
+	spaceship.alpha = spaceship.alpha - 0.01
 end
 
 -- MoveShip will be called over and over again
-Runtime:addEventListener("enterframe", MoveShip)
+Runtime:addEventListener("enterFrame", MoveShip)
 
 -- character image with widdth and height
-local astronaut = display.newImageRect("Images/astronaut.png", 200,200)
+local astronaut = display.newImageRect("Images/astronaut.png", 250,250)
 
 -- set the image to be transparent
 astronaut.alpha = 0
 
 -- set the inital x and y position of astronaut
-astronaut.x = 50
-astronaut.y = 40
+astronaut.x = 300
+astronaut.y = 500
+
+
 -- Function: MoveMan
 -- Input: this function accepts an event listener
 -- Output: none
@@ -54,8 +56,8 @@ local function MoveMan(event)
 	-- add the scroll speed to the x-value of the astronaut
 	astronaut.x = astronaut.x + scrollSpeed
 	-- change the transparency of the astronaut every time it moves so that it fades in
-	astronaut.alpha = astronaut.alpha - 0.01
+	astronaut.alpha = astronaut.alpha + 0.01
 end
 
 -- MoveMan will be called over and over again
-Runtime:addEventListener("enterframe", MoveMan)
+Runtime:addEventListener("enterFrame", MoveMan)
