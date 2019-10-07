@@ -75,12 +75,13 @@ local function NumericFieldListener( event )
 			points = points + 1
 			-- update it in the display object
 			pointsText.text = "points = " .. points
-			-- show "you win!" after 5 points
+			-- add timer
 			timer.performWithDelay(2000, HideCorrect)
+			-- show "you win!" after 5 points		
 			if (points == 5) then
 				correctObject.isVisible = false
 				winObject.isVisible = true
-
+				timer.performWithDelay(2000, HideWin)
 			end
 		-- user answer is incorrect
 		else
@@ -93,6 +94,7 @@ local function NumericFieldListener( event )
 			if (numIncorrect == 3) then
 				incorrectObject.isVisible = false
 				loseObject.isVisible = true
+				timer.performWithDelay(2000, HideLose)
 			end
 		end
 		-- clear text field
@@ -124,15 +126,15 @@ incorrectObject:setTextColor(155/255, 42/255, 198/255)
 incorrectObject.isVisible = false
 
 -- create the win text object object and make it invisible
-winObject = display.newText( "You Won!", display.contentWidth/2, 
-	600, nil, 50 )
-winObject:setTextColor(155/255, 42/255, 198/255)
+winObject = display.newImageRect("Images/win.png", 450, 300)
+winObject.x =  512
+winObject.y = 590
 winObject.isVisible = false
 
 -- create the lose text object object and make it invisible
 loseObject = display.newImageRect("Images/lose.png", 450, 290)
-loseObject.x =  display.contentWidth/2
-loseObject.y = 600
+loseObject.x =  512
+loseObject.y = 590
 loseObject.isVisible = false
 
 -- Create numeric field
