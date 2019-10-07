@@ -72,3 +72,6 @@ local function RedButtonListener(touch)
 		textObject.isVisible = true
 	end
 end
+
+-- add the respective  listeners to each object
+redButton:addEventListener("touch", RedButtonListener)
