@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------
 -- Title: MathFun
--- Name: Your Name
+-- Name: Moryah
 -- Course: ICS2O/3C
 -- This program creates math problems with random operators
 -- (*,-,+,/)
