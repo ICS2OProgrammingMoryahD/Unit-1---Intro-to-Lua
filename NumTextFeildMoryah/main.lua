@@ -12,7 +12,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- sets the background colour
-display.setDefault("background", 124/255, 249/255, 199/255)
+display.setDefault("background", 1/255, 1/255, 55/255)
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -25,7 +25,7 @@ local numericField
 local randomNumber1
 local randomNumber2
 local userAnswer
-local correctAnswer
+local correctAnswer = 0
 local incorrectObject
 local numIncorrect = 0
 local points = 0
@@ -51,6 +51,8 @@ end
 local function HideCorrect()
 	correctObject.isVisible = false
 	incorrectObject.isVisible = false
+	loseObject.isVisible = false
+	winObject.isVisible = false
 	AskQuestion()
 end
 
@@ -125,15 +127,15 @@ incorrectObject:setTextColor(155/255, 42/255, 198/255)
 incorrectObject.isVisible = false
 
 -- create the win text object object and make it invisible
-winObject = display.newImageRect("Images/win.png", 450, 300)
-winObject.x =  512
-winObject.y = 590
+winObject = display.newImageRect("Images/win.png", 550, 400)
+winObject.x =  display.contentWidth/2
+winObject.y = display.contentHeight/2
 winObject.isVisible = false
 
 -- create the lose text object object and make it invisible
-loseObject = display.newImageRect("Images/lose.png", 450, 290)
-loseObject.x =  512
-loseObject.y = 590
+loseObject = display.newImageRect("Images/lose.png", 850, 490)
+loseObject.x =  display.contentWidth/2
+loseObject.y = display.contentHeight/2
 loseObject.isVisible = false
 
 -- Create numeric field
