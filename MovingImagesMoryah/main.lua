@@ -10,11 +10,24 @@ display.setStatusBar(display.HiddenStatusBar)
 -- global variables
 scrollSpeed = 3
 
+-----------------------------------------------------------------------------------------
+-- LOCAL VARIABLES
+-----------------------------------------------------------------------------------------
+
+local backgroundSound = audio.loadSound("Sounds/backgroundSound.mp3") -- Setting a variable
+-- to an mp3 file
+local backgroundSoundChannel
+
 -- background image with width and height
 local backgroundImage = display.newImageRect("Images/space-2.png", 2048, 1536)
 
 -- character image with widdth and height
 local spaceship = display.newImageRect("Images/spaceship.png", 650,550)
+
+-- character image with widdth and height
+local astronaut = display.newImageRect("Images/astronaut.png", 250,250)
+
+-----------------------------------------------------------------------------------------
 
 -- set the image to be transparent
 spaceship.alpha = 1
@@ -22,6 +35,16 @@ spaceship.alpha = 1
 -- set the inital x and y position of spaceship
 spaceship.x = 400
 spaceship.y = 400
+
+-- set the image to be transparent
+astronaut.alpha = 0
+
+-- set the inital x and y position of astronaut
+astronaut.x = 300
+astronaut.y = 500
+-----------------------------------------------------------------------------------------
+
+backgroundSoundChannel = audio.play(backgroundSound, {loops = -1})
 
 -- Function: MoveShip
 -- Input: this function accepts an event listener
@@ -36,17 +59,6 @@ end
 
 -- MoveShip will be called over and over again
 Runtime:addEventListener("enterFrame", MoveShip)
-
--- character image with widdth and height
-local astronaut = display.newImageRect("Images/astronaut.png", 250,250)
-
--- set the image to be transparent
-astronaut.alpha = 0
-
--- set the inital x and y position of astronaut
-astronaut.x = 300
-astronaut.y = 500
-
 
 -- Function: MoveMan
 -- Input: this function accepts an event listener
