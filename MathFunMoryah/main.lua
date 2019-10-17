@@ -28,7 +28,11 @@ local correctAnswer
 local correctObject
 local incorrectObject
 local numericField
-
+local correct = audio.loadSound("correct.mp3") -- Setting a variable
+local incorrect = audio.loadSound("incorrect.mp3") -- Setting a variable
+-- to an mp3 file
+local correctChannel
+local incorrectChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNTIONS
@@ -102,7 +106,7 @@ local function NumericFieldListener( event ) -- User begins typing in "numericFi
 		-- if the user answer and the correct answer are the same:
 		if (userAnswer == correctAnswer) then
 			
-			
+			correctChannel = audio.play(correct)
 			
 			-- show the correct object
 			correctObject.isVisible = true
@@ -112,10 +116,11 @@ local function NumericFieldListener( event ) -- User begins typing in "numericFi
 		
 		else -- user answer is incorrect
 			
+			incorrectChannel = audio.play(incorrect)
+
 			-- display incorrectObject when user gets answer wrong
 			incorrectObject.text = ("Incorrect! The correct answer was " .. correctAnswer .. ".")
 			incorrectObject.isVisible = true
-			
 			
 			timer.performWithDelay(2000, HideCorrect)
 			

@@ -16,7 +16,7 @@ display.setStatusBar(display.HiddenStatusBar)
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
-local click = audio.loadSound("click/sound.mp3") -- Setting a variable
+local click = audio.loadSound("click.mp3") -- Setting a variable
 
 -- to an mp3 file
 local soundChannel

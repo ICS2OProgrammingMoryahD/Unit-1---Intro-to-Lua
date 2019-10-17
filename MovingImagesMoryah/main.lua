@@ -15,6 +15,7 @@ scrollSpeed = 3
 -----------------------------------------------------------------------------------------
 
 local backgroundSound = audio.loadSound("Sounds/backgroundSound.mp3") -- Setting a variable
+
 -- to an mp3 file
 local backgroundSoundChannel
 
