@@ -119,7 +119,8 @@ local function NumericFieldListener( event ) -- User begins typing in "numericFi
 			incorrectChannel = audio.play(incorrect)
 
 			-- display incorrectObject when user gets answer wrong
-			incorrectObject.text = ("Incorrect! The correct answer was " .. correctAnswer .. ".")
+			incorrectObject.text = ("Incorrect! The correct answer was " .. correctAnswer
+			 .. ".")
 			incorrectObject.isVisible = true
 			
 			timer.performWithDelay(2000, HideCorrect)
