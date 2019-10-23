@@ -20,7 +20,9 @@ local backgroundSound = audio.loadSound("Sounds/backgroundSound.mp3") -- Setting
 local backgroundSoundChannel
 
 -- background image with width and height
-local backgroundImage = display.newImageRect("Images/space-2.png", 2048, 1536)
+local backgroundImage = display.newImageRect("Images/space-2.png", 1134, 788)
+backgroundImage.x = 500
+backgroundImage.y = 390
 
 -- character image with widdth and height
 local spaceship = display.newImageRect("Images/spaceship.png", 650,550)

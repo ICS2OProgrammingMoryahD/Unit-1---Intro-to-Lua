@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------
--- Title: TouchAndReact
+-- Title: TouchAndReact -- behind bars
 -- Name: Moryah
 -- Course: ICS2O/3C
 -- This program...
@@ -16,34 +16,32 @@ display.setStatusBar(display.HiddenStatusBar)
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
-local click = audio.loadSound("click.mp3") -- Setting a variable
-
--- to an mp3 file
-local soundChannel
+-- bkg music
+local bkg = audio.loadSound("Sounds/background.mp3") -- Setting a variable
+local bkgChannel
 
 -- create blue button, set its position and make it visible
 local blueButton = display.newImageRect("Images/Fast Button Inactive@2x.png",198, 96)
-blueButton.x = display.contentWidth/2
-blueButton.y = display.contentHeight/2
-blueButton.isVisible = true
+	blueButton.x = display.contentWidth/2
+	blueButton.y = display.contentHeight/2
+	blueButton.isVisible = true
 
 -- create red button, set its position and make it visible
 local redButton = display.newImageRect("Images/Fast Button Active@2x.png",198, 96)
-redButton.x = display.contentWidth/2
-redButton.y = display.contentHeight/2
-redButton.isVisible = false
+	redButton.x = display.contentWidth/2
+	redButton.y = display.contentHeight/2
+	redButton.isVisible = false
 
 -- create text object, set its position and make it invisible
 local textObject = display.newText ("Clicked!", 0, 0, nil, 50)
-textObject.x = display.contentWidth/2
-textObject.y = display.contentHeight/3
-textObject:setTextColor  (1, 1, 1)
-textObject.isVisible = false
+	textObject.x = display.contentWidth/2
+	textObject.y = display.contentHeight/3
+	textObject:setTextColor  (1, 1, 1)
+	textObject.isVisible = false
 
 -----------------------------------------------------------------------------------------
 
-
-
+bkgChannel = audio.play(bkg, {loops = -1})
 
 -- Function: BlueButtonListener
 -- Input: touch listener
@@ -55,7 +53,6 @@ local function BlueButtonListener(touch)
 		blueButton.isVisible = false
 		redButton.isVisible = true
 		textObject.isVisible = true
-		soundChannel = audio.play(click)
 	end
 
 	if (touch.phase == "ended") then
