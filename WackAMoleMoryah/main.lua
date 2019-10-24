@@ -1,6 +1,4 @@
 -----------------------------------------------------------------------------------------
-<<<<<<< HEAD
---
 -- Title: WhackAMole
 -- Name: Moryah
 -- Course: ICS2O/3C
@@ -23,37 +21,24 @@ display.setStatusBar (display.HiddenStatusBar)
 -- create lives
 local lives = 5
 
+local livesText
+
 -- create points
 local points = 5
+
+local pointsText
 
 -- win image
 local win
 
+local winObject
+
 -- lose image
 local lose
 
--- create the background
-local bkg = display.newImageRect("Images/bkg.jpg", 1024, 768)
-	
-	-- setting pos
-	bkg.anchorX = 500
-	bkg.anchorY = 300
-	bkg.x = 1024
-	bkg.y = 768
+local loseObject
 
--- creating mole
-local mole = display.newImage( "Images/mole.png", 0, 0)
-
-	-- setting pos
-	mole.x = display.contentCenterX
-	mole.y = display.contentCenterY
-
-	-- scale down size of the mole to be 1/3 of original size
-	mole.width = display.contentWidth/3
-	mole.height = display.contentHeight/3
-
-	-- mole isn't visible YET
-	mole.isVisible = false
+local mole
 
 -----------------------------------------------------------------------------------------
 -- FUNCTION
@@ -135,25 +120,35 @@ function Whacked( event )
 
 end
 
------------------------------------------------------------------------------------------
--- EVENT LISTENER
------------------------------------------------------------------------------------------
--- i add the event listener to the moles so that if the mole is touched, the Whacked 
--- function is called
-mole:addEventListener( "touch", Whacked)
 
-=======
--- Title: 
--- Name: Your Name
--- Course: ICS2O/3C
--- This program creates math problems with random operators
--- (*,-,+,/)
--- main.lua
---
->>>>>>> f2b85072330c8664cdf9b193fc26858541eea3b2
 -----------------------------------------------------------------------------------------
 -- OBJECTS
 -----------------------------------------------------------------------------------------
+
+-- create the background
+local bkg = display.newImageRect("Images/bkg.jpg", 1024, 768)
+	
+	-- setting pos
+	bkg.anchorX = 500
+	bkg.anchorY = 300
+	bkg.x = 1024
+	bkg.y = 768
+
+-- creating mole
+
+ mole = display.newImage( "Images/mole.png", 0, 0)
+
+	-- setting pos
+	mole.x = display.contentCenterX
+	mole.y = display.contentCenterY
+
+	-- scale down size of the mole to be 1/3 of original size
+	mole.width = display.contentWidth/3
+	mole.height = display.contentHeight/3
+
+	-- mole isn't visible YET
+	mole.isVisible = false
+
 
 -- display the amount of points as a text object
 pointsText = display.newText("point = " .. points, 150, 33, nil, 50)
@@ -172,6 +167,13 @@ loseObject = display.newImageRect("Images/lose.png", 512, 384)
 loseObject.x =  display.contentWidth/2
 loseObject.y = display.contentHeight/2
 loseObject.isVisible = false
+
+-----------------------------------------------------------------------------------------
+-- EVENT LISTENER
+-----------------------------------------------------------------------------------------
+-- i add the event listener to the moles so that if the mole is touched, the Whacked 
+-- function is called
+mole:addEventListener( "touch", Whacked)
 
 ---------------------------------START GAME----------------------------------------------
 GameStarts()
