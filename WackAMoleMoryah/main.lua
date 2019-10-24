@@ -1,4 +1,5 @@
 -----------------------------------------------------------------------------------------
+<<<<<<< HEAD
 --
 -- Title: WhackAMole
 -- Name: Moryah
@@ -141,6 +142,15 @@ end
 -- function is called
 mole:addEventListener( "touch", Whacked)
 
+=======
+-- Title: 
+-- Name: Your Name
+-- Course: ICS2O/3C
+-- This program creates math problems with random operators
+-- (*,-,+,/)
+-- main.lua
+--
+>>>>>>> f2b85072330c8664cdf9b193fc26858541eea3b2
 -----------------------------------------------------------------------------------------
 -- OBJECTS
 -----------------------------------------------------------------------------------------
