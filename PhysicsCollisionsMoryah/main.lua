@@ -85,7 +85,10 @@ local function firstBall()
 
 	-- creating first ball
 	local ball1 = display.newImage("Image/ball.png", 50, 50)
-	
+		
+		ball1.width = 100
+		ball1.height = 100
+
 	-- add to physics
 	physics:addBody(ball1, {density = 1.0, friction = 0.5, bounce = 0.3, radius = 25})
 end
@@ -94,7 +97,10 @@ end
 --create ball2
 local function secondball()
 	-- creating second ball
-	local ball2 = display.newImage("Image/ball2.png", 25, 25)
+	local ball2 = display.newImage("Image/ball.png", 25, 25)
+
+		ball2.width = 100
+		ball2.height = 100
 
 	-- add to physics
 	physics:addBody(ball2, {density = 1.0, friction = 0.5, bounce = 0.3, radius = 12.5})
@@ -104,7 +110,10 @@ end
 --create ball3
 local function thirdball()
 	-- creating third ball
-	local ball3 = display.newImage("Image/ball3.png", 12.5, 12.5)
+	local ball3 = display.newImage("Image/ball.png", 12.5, 12.5)
+
+		ball3.width = 100
+		ball3.height = 100
 
 	-- add to physics
 	physics:addBody(ball3, {density = 1.0, friction = 0.5, bounce = 0.3, radius = 6.25})
@@ -114,7 +123,10 @@ end
 --create ball4
 local function fourthball()
 	-- creating fourth ball
-	local ball4 = display.newImage("Image/ball4.png", 6.25, 6.25)
+	local ball4 = display.newImage("Image/ball.png", 6.25, 6.25)
+
+		ball4.width = 100
+		ball4.height = 100
 
 	-- add to physics
 	physics:addBody(ball4, {density = 1.0, friction = 0.5, bounce = 0.3, radius =3.125})
