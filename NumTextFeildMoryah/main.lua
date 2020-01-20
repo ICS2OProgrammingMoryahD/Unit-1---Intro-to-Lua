@@ -127,13 +127,13 @@ incorrectObject:setTextColor(155/255, 42/255, 198/255)
 incorrectObject.isVisible = false
 
 -- create the win text object object and make it invisible
-winObject = display.newImageRect("Images/win.png", 550, 400)
+winObject = display.newImageRect("Images/win.png", 950, 600)
 winObject.x =  display.contentWidth/2
 winObject.y = display.contentHeight/2
 winObject.isVisible = false
 
 -- create the lose text object object and make it invisible
-loseObject = display.newImageRect("Images/lose.png", 850, 490)
+loseObject = display.newImageRect("Images/lose.png", 1050, 690)
 loseObject.x =  display.contentWidth/2
 loseObject.y = display.contentHeight/2
 loseObject.isVisible = false

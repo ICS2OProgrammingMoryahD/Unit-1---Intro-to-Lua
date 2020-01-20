@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------
 -- Title: TouchAndDrag
--- Name: Your Name
+-- Name: Moryah
 -- Course: ICS2O/3C
 -- This program moves images when you press on them and doesn't stick to others
 -- dragged over them
@@ -17,15 +17,15 @@ display.setStatusBar(display.HiddenStatusBar)
 local backgroundImage = display.newImageRect("Images/space-2.png", 2480, 1536)
 local ship = display.newImageRect("Images/spaceship.png", 350, 300)
 local shipWidth = ship.width
-local shipHeight = ship.shipHeight
+local shipHeight = ship.height
 
 local astro = display.newImageRect("Images/astronaut.png", 250, 250)
 local astroWidth = astro.width
-local astroHeight = astro.shipHeight
+local astroHeight = astro.height
 
 -- my boolean variables to keep track of which object i touched first
-local alreadyTouchedAstro = false
 local alreadyTouchedShip = false
+local alreadyTouchedAstro = false
 
 -- set the initial x and y  position of myImage
 astro.x = 300
@@ -52,10 +52,32 @@ local function astroListener(touch)
 	end
 
 	if (touch.phase == "ended") then
-		alreadyTouchedAstro = false
 		alreadyTouchedShip = false
+		alreadyTouchedAstro = false
 	end
 end
 
 -- add the respective listeners to each object
 astro:addEventListener("touch", astroListener)
+
+local function shipListener(touch)
+
+	if (touch.phrase == "began") then
+		if (alreadyTouchedAstro == false) then
+			alreadyTouchedShip = true
+		end
+	end
+
+	if ( (touch.phase == "moved") and (alreadyTouchedAstro == true) ) then
+		ship.x = touch.x
+		ship.y = touch.y
+	end
+
+	if (touch.phase == "ended") then
+		alreadyTouchedShip = false
+		alreadyTouchedAstro = false
+	end
+end
+
+-- add the respective listeners to each object
+ship:addEventListener("touch", shipListener)
