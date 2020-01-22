@@ -18,7 +18,7 @@ display.setDefault("background", 1/255, 1/255, 55/255)
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
-local randomOp
+local randomOperator
 local num1
 local num2
 local num3
@@ -28,19 +28,22 @@ local correctAnswer
 local correctObject
 local incorrectObject
 local numericField
+
 local correct = audio.loadSound("correct.mp3") -- Setting a variable
-local incorrect = audio.loadSound("incorrect.mp3") -- Setting a variable
--- to an mp3 file
 local correctChannel
+
+local incorrect = audio.loadSound("incorrect.mp3") -- Setting a variable
 local incorrectChannel
-local totalSeconds = 5
-local secondsLeft = 5
+
+local totalSeconds = 10
+local secondsLeft = 10
 local clockText
 local countDownTimer
 
 local lives = 3
 local heart
 local heart2
+local heart3
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNTIONS
@@ -48,17 +51,19 @@ local heart2
 
 local function AskQuestion()
 
+	StartTimer()
+
 	-- chose a random operators
-	randomOp = math.random(1,4)
+	randomOperator = math.random(1,4)
 	
-	if (randomOp == 1) then
+	if (randomOperator == 1) then
 		-- generate 2 random number between a max. and a min. number
 		num1 = math.random(0, 10)
 		num2 = math.random(0, 10)
 		correctAnswer = num1 + num2
 		-- create question in text object
 		questionObject.text = num1 .. "+" .. num2 .. " = "
-	elseif (randomOp == 2) then
+	elseif (randomOperator == 2) then
 		-- generate 2 random number between a max. and a min. number
 		num1 = math.random(0, 10)
 		num2 = math.random(0, 10)
@@ -70,7 +75,7 @@ local function AskQuestion()
 		end
 		-- create question in text object
 		questionObject.text = num1 .. "-" .. num2 .. " = "
-	elseif (randomOp == 3) then
+	elseif (randomOperator == 3) then
 		-- generate 2 random number between a max. and a min. number
 		num1 = math.random(0, 10)
 		num2 = math.random(0, 10)
@@ -82,7 +87,7 @@ local function AskQuestion()
 		end
 		-- create question in text object
 		questionObject.text = num1 .. "*" .. num2 .. " = "
-	elseif (randomOp == 4) then
+	elseif (randomOperator == 4) then
 		-- generate 2 random number between a max. and a min. number
 		num1 = math.random(10, 100)
 		num2 = math.random(1, 10)
@@ -105,23 +110,43 @@ local function UpdateTime()
 
 	if (secondsLeft == 0) then
 		-- reset the number of seconds left
+
 		secondsLeft = totalSeconds
+
 		lives = lives - 1
 
 		-- *** IF THERE ARE NO MORE LIVEES LEFT, PLAY LOSE SOUND, SHOW IMAGE
 		-- AND CHANGE THE TIMER REMOVE THE THIRD HEART BY MAKING IT invisible
-		if (lives == 2) then
-			heart2.isVisible = false
-		elseif (lives == 1) then
-			heart1.isVisible =false
-		end
 
-		-- *** CALL THE FUNCTION TO ASK A NEW QUESTION
+		if (lives == 2) then
+
+			heart.isVisible = true
+			heart2.isVisible = true
+			heart3.isVisible = false
+
+
+		elseif (lives == 1) then
+
+			heart.isVisible = true
+			heart2.isVisible = false
+			heart3.isVisible = false
+
+		elseif (lives == 0) then
+
+			heart.isVisible = false
+			heart2.isVisible = false
+			heart3.isVisible = false
+			questionObject.isVisible = false
+			numericField.isVisible = false
+			clockText.isVisible = false
+			loseObject.isVisible = true
+
+		end
 	end
 end
 
 -- functions that calls the timer
-local function StartTimer()
+function StartTimer()
 	-- create a countdown timer that loops infinitely
 	countDownTimer = timer.performWithDelay( 1000, UpdateTime, 0)
 end
@@ -155,6 +180,8 @@ local function NumericFieldListener( event ) -- User begins typing in "numericFi
 		
 		else -- user answer is incorrect
 			
+			lives = lives - 1
+
 			incorrectChannel = audio.play(incorrect)
 
 			-- display incorrectObject when user gets answer wrong
@@ -163,7 +190,32 @@ local function NumericFieldListener( event ) -- User begins typing in "numericFi
 			incorrectObject.isVisible = true
 			
 			timer.performWithDelay(2000, HideCorrect)
-			
+
+			if (lives == 2) then
+
+				heart.isVisible = true
+				heart2.isVisible = true
+				heart3.isVisible = false
+
+			elseif (lives == 1) then
+
+				heart.isVisible = true
+				heart2.isVisible = false
+				heart3.isVisible = false
+
+			elseif (lives == 0) then
+
+				heart.isVisible = false
+				heart2.isVisible = false
+				heart3.isVisible = false
+				questionObject.isVisible = false
+				numericField.isVisible = false
+				clockText.isVisible = false
+				incorrectObject.isVisible = false
+				correctObject.isVisible = false
+				loseObject.isVisible = true
+
+			end
 		end
 		-- clear text field
 		event.target.text = ""
@@ -193,6 +245,12 @@ incorrectObject = display.newText( "Incorrect!" , display.contentWidth/2,
 incorrectObject:setTextColor(255/255, 55/255, 55/255)
 incorrectObject.isVisible = false
 
+-- create the incorrect text object object and make it invisible
+loseObject = display.newText( "GAME OVER!" , display.contentWidth/2, 
+	display.contentHeight/2, nil, 111 )
+loseObject:setTextColor(255/255, 55/255, 55/255)
+loseObject.isVisible = false
+
 -- Create numeric field
 numericField = native.newTextField( display.contentWidth/2, display.contentHeight/2, 150,
  80 )
@@ -200,6 +258,9 @@ numericField.inputType = "number"
 
 -- add the event listen for the numeric field
 numericField:addEventListener( "userInput", NumericFieldListener)
+
+clockText = display.newText("" .. secondsLeft, 100, 100, nil, 99)
+clockText:setTextColor(1, 0, 0)
 
 -- create the lives to display on the screen
 heart = display.newImageRect("Images/heart.png", 100, 100)
@@ -209,13 +270,12 @@ heart.y = display.contentHeight *1/7
 heart2 = display.newImageRect("Images/heart.png", 100, 100)
 heart2.x = display.contentWidth *6/8
 heart2.y = display.contentHeight *1/7
+
+heart3 = display.newImageRect("Images/heart.png", 100, 100)
+heart3.x = display.contentWidth *5/8
+heart3.y = display.contentHeight *1/7
 -----------------------------------------------------------------------------------------
 -- FUNTION CALLS
 -----------------------------------------------------------------------------------------
-
---call the functions
+-- *** CALL THE FUNCTION TO ASK A NEW QUESTION
 AskQuestion()
-
-StartTimer()
-
-UpdateTime()

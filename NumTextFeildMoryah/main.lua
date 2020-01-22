@@ -139,7 +139,7 @@ loseObject.y = display.contentHeight/2
 loseObject.isVisible = false
 
 -- Create numeric field
-numericField = native.newTextField( display.contentWidth/2, display.contentHeight/2, 150,
+numericField = native.newTextField( 515, display.contentHeight/2, 150,
  80 )
 numericField.inputType = "number"
 
